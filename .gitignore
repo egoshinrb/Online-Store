@@ -1,0 +1,18 @@
+# Gradle
+**/build/
+**/.gradle/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Android
+**/local.properties
+**/captures/
+**/*.apk
+**/*.aab
+
+# Env
+.env
+*.log

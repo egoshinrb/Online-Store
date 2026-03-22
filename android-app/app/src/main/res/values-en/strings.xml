@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Grocery Store</string>
+    <string name="nav_catalog">Catalog</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_cart">Cart</string>
+    <string name="nav_orders">Orders</string>
+    <string name="nav_addresses">Addresses</string>
+    <string name="login">Sign in</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="logout">Sign out</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="favorite">Favorite</string>
+    <string name="checkout">Checkout</string>
+    <string name="map_pick">Pick on map</string>
+</resources>

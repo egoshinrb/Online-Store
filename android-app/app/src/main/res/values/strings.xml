@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Магазин</string>
+    <string name="nav_catalog">Каталог</string>
+    <string name="nav_favorites">Избранное</string>
+    <string name="nav_cart">Корзина</string>
+    <string name="nav_orders">Заказы</string>
+    <string name="nav_addresses">Адреса</string>
+    <string name="login">Вход</string>
+    <string name="register">Регистрация</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="name">Имя</string>
+    <string name="logout">Выход</string>
+    <string name="add_to_cart">В корзину</string>
+    <string name="favorite">В избранное</string>
+    <string name="checkout">Оформить</string>
+    <string name="map_pick">Выбрать на карте</string>
+</resources>

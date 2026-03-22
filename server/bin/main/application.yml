@@ -1,0 +1,83 @@
+micronaut:
+  application:
+    name: online-store-server
+  server:
+    port: ${SERVER_PORT:8080}
+    cors:
+      enabled: true
+      configurations:
+        web:
+          allowed-origins:
+            - ${CORS_ORIGIN:*}
+          allowed-methods: GET,POST,PUT,PATCH,DELETE,OPTIONS
+          allowed-headers: Authorization,Content-Type
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: ${JWT_SECRET:please-change-this-secret-to-at-least-256-bits-long-value-for-production}
+            validator:
+              secret: ${JWT_SECRET:please-change-this-secret-to-at-least-256-bits-long-value-for-production}
+        bearer:
+          enabled: true
+    intercept-url-map:
+      - pattern: /swagger-ui/**
+        http-method: GET
+        access: isAnonymous()
+      - pattern: /swagger/**
+        http-method: GET
+        access: isAnonymous()
+      - pattern: /v3/api-docs/**
+        access: isAnonymous()
+      - pattern: /api/auth/**
+        access: isAnonymous()
+      - pattern: /health/**
+        access: isAnonymous()
+      - pattern: /ws/**
+        access: isAnonymous()
+      - pattern: /api/**
+        access: isAuthenticated()
+  serde:
+    serialization:
+      inclusion: NON_NULL
+
+datasources:
+  default:
+    url: ${JDBC_URL:jdbc:postgresql://localhost:5432/onlinestore}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+
+jpa:
+  default:
+    entity-scan:
+      packages: com.onlinestore.server.model.entity
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+        show_sql: false
+        format_sql: true
+
+flyway:
+  datasources:
+    default:
+      enabled: true
+      locations: classpath:db/migration
+
+jackson:
+  serialization-inclusion: NON_NULL
+
+app:
+  jwt:
+    access-ttl-minutes: 15
+
+endpoints:
+  health:
+    enabled: true
+    sensitive: false
