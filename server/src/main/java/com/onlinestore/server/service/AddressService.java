@@ -21,7 +21,7 @@ public class AddressService {
         this.userAddressRepository = userAddressRepository;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public List<AddressDtos.AddressDto> list(User user) {
         return userAddressRepository.findByUser_IdOrderByIdAsc(user.getId()).stream()
                 .map(this::toDto)

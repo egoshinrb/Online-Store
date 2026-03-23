@@ -1,6 +1,5 @@
 plugins {
     id("io.micronaut.application") version "4.5.0"
-    id("com.gradleup.shadow") version "8.3.5"
 }
 
 version = "0.1.0"
@@ -19,6 +18,7 @@ dependencies {
 
     implementation("io.micronaut:micronaut-http-server-netty")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
+    implementation("io.micronaut.data:micronaut-data-annotations")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut.flyway:micronaut-flyway")
@@ -28,7 +28,7 @@ dependencies {
     implementation("io.micronaut.openapi:micronaut-openapi-annotations")
     implementation("io.micronaut:micronaut-websocket")
     implementation("io.micronaut.cache:micronaut-cache-caffeine")
-    implementation("org.springframework.security:spring-security-crypto")
+    implementation("org.springframework.security:spring-security-crypto:6.2.4")
     implementation("io.jsonwebtoken:jjwt-api:0.12.5")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.5")
@@ -68,21 +68,6 @@ tasks.named<Test>("test") {
     useJUnitPlatform()
 }
 
-// Важное исправление: убираем создание задач startShadowScripts и shadowDistTar
-tasks.named("startShadowScripts") {
-    enabled = false
-}
-
-tasks.named("shadowDistTar") {
-    enabled = false
-}
-
-tasks.named("shadowDistZip") {
-    enabled = false
-}
-
-// Настройка shadowJar только для создания fat JAR
-tasks.named("shadowJar") {
-    mergeServiceFiles()
-    archiveClassifier.set("all")
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
 }

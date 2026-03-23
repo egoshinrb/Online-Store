@@ -107,14 +107,14 @@ public class OrderService {
         return toDto(orderRepository.findById(order.getId()).orElse(order));
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public List<OrderDtos.OrderDto> list(User user) {
         return orderRepository.findByUser_IdOrderByCreatedAtDesc(user.getId()).stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public OrderDtos.OrderDto get(User user, Long id) {
         StoreOrder o = orderRepository.findByIdAndUser_Id(id, user.getId())
                 .orElseThrow(() -> new HttpStatusException(HttpStatus.NOT_FOUND, "Order not found"));

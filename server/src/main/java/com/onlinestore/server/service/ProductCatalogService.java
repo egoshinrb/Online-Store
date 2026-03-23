@@ -33,7 +33,7 @@ public class ProductCatalogService {
         this.favoriteRepository = favoriteRepository;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public List<CatalogDtos.CategoryDto> categories() {
         return categoryRepository.findAllByOrderBySortOrderAsc().stream()
                 .map(c -> new CatalogDtos.CategoryDto(
@@ -45,7 +45,7 @@ public class ProductCatalogService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public CatalogDtos.ProductListResponse products(CatalogDtos.ProductFilter filter, Long userId) {
         List<Product> all = productRepository.findAll();
         if (filter != null && filter.categoryId() != null) {
@@ -80,7 +80,7 @@ public class ProductCatalogService {
         return new CatalogDtos.ProductListResponse(dtos, dtos.size());
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public CatalogDtos.ProductDto product(Long id, Long userId) {
         Product p = productRepository.findById(id)
                 .orElseThrow(() -> new HttpStatusException(HttpStatus.NOT_FOUND, "Product not found"));

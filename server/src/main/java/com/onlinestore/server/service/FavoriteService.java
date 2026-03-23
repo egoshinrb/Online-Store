@@ -49,7 +49,7 @@ public class FavoriteService {
                 .ifPresent(favoriteRepository::delete);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public List<CatalogDtos.ProductDto> list(User user) {
         List<Favorite> favs = favoriteRepository.findByUser_IdOrderByProductIdAsc(user.getId());
         return favs.stream()
